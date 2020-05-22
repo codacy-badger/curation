@@ -71,21 +71,20 @@ class ObservationSourceConceptIDRowSuppression(BaseCleaningRule):
         """
         save_dropped_rows = {
             cdr_consts.QUERY:
-                DROP_SELECTION_QUERY.format(
-                    project=self.get_project_id(),
-                    dataset=self.get_dataset_id(),
-                    sandbox=self.get_sandbox_dataset_id(),
-                    drop_table=SAVE_TABLE_NAME),
+                DROP_SELECTION_QUERY.format(project=self.project_id,
+                                            dataset=self.dataset_id,
+                                            sandbox=self.sandbox_dataset_id,
+                                            drop_table=SAVE_TABLE_NAME),
         }
 
         drop_rows_query = {
             cdr_consts.QUERY:
-                DROP_QUERY.format(project=self.get_project_id(),
-                                  dataset=self.get_dataset_id()),
+                DROP_QUERY.format(project=self.project_id,
+                                  dataset=self.dataset_id),
             cdr_consts.DESTINATION_TABLE:
                 'observation',
             cdr_consts.DESTINATION_DATASET:
-                self.get_dataset_id(),
+                self.dataset_id,
             cdr_consts.DISPOSITION:
                 WRITE_TRUNCATE
         }
